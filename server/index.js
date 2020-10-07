@@ -34,13 +34,13 @@ io.on('connection',(socket)=>{
       
       console.log(rooms.getUserByRoom(room));
       socket.emit("FROM_SERVER_TO_CLIENT", {
-        from: "admin",
-        text: "welcome to web chat",
+        from: "Admin",
+        text: "Welcome to DINHTUCHAT",
         createdAt: new Date()
       })
       socket.broadcast.to(room).emit("FROM_SERVER_TO_CLIENT", {
-        from: "admin",
-        text: `${name} join web chat`,
+        from: "Admin",
+        text: `${name} join DINHTUCHAT`,
         createdAt: new Date()
       })
       socket.on('FROM_CLIENT_TO_SERVER', (data) => {
@@ -60,7 +60,7 @@ io.on('connection',(socket)=>{
       socket.on('disconnect', () => {
         const removeUser = rooms.removeUser(socket.id);
         socket.broadcast.emit("FROM_SERVER_TO_CLIENT", {
-          from: "admin",
+          from: "Admin",
           text: `${removeUser.name} left room`,
           createdAt: new Date()
         })
